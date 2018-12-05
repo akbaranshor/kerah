@@ -1,0 +1,9 @@
+esd{dalamiSisop}
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'level_5.php', true);
+xhr.setRequestHeader("Authorization", 'Basic dGVrYXRla2k=');
+xhr.onload = function () {
+    // do something to response
+    console.log(this.responseText);
+};xhr.send('answer=asd');
