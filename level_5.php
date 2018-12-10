@@ -1,6 +1,8 @@
-<?php 
-session_start();
-session_set_cookie_params('PHPSESSID', '1'); ?>
+<?php
+
+	$a = 'esd{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum}';
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,7 @@ session_set_cookie_params('PHPSESSID', '1'); ?>
 				<div class="card-body">
 					<form method="post">
 						<h4 class="card-title">Teka-teki 5</h4>
-						<p class="card-text">Ping ke suatu IP, lalu cari file yang merujuk ke clue jawaban</p>
+						<p class="card-text"><?php echo strrev($a); ?></p>
 						<div class="form-group">
 						  <input type="text" class="form-control" name="answer" placeholder="Masukkan jawabannya (format: esd{jawaban})" id="myText">
 						</div>
@@ -39,15 +41,15 @@ session_set_cookie_params('PHPSESSID', '1'); ?>
 
 		<?php
 			if(isset($_POST['answer'])) {
+
+				// $a = 'esd{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum}';
 				// level_5	
-				if ($_POST['answer'] != 'esd{skripjawa}') {
-					$cmd = shell_exec('ping -c 1 '.$_POST['answer']);
-					// echo 'Tebakan anda salah';
-					echo '<pre>'.$cmd.'</pre>';
-				} else if ($_POST['answer'] == 'esd{dalamiSisop}') {
-					// header("Location: level_5.php");
-    	// 			exit;
-					echo 'yeay';
+				if ($_POST['answer'] == $a) {
+					header("Location: level_6.php?auth=0");
+    				exit;
+					// echo 'yeay';
+				} else {
+					echo "Salah";
 				}
 				// $headers = apache_request_headers();
 
